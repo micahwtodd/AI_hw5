@@ -1,0 +1,103 @@
+{
+  "database": "data/campus_customs_new.db",
+  "note": "Read-only results from data/campus_customs_new.db as saved after tickets 101-103. Stock is still 0 and the hoodie price is unchanged. Rent is still $2,400 due 2026-09-02. Checking in this file is $160 because that rent and invoice 501 were already paid, so a new rent draft is blocked for insufficient cash. Copy data/campus_customs.db over the working file, or use Reset shop, before expecting the original $3,400 balance.",
+  "tests": [
+    {
+      "prompt": "how many CC-TEE-WHITE shirts in size S do we have in stock?",
+      "tool": "check_inventory_status",
+      "arguments": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S"
+      },
+      "output": {
+        "source_tables": [
+          "tickets",
+          "inventory"
+        ],
+        "ticket_id": null,
+        "matching_ticket_ids": [],
+        "ticket_status": null,
+        "sku": "CC-TEE-WHITE",
+        "requested_size": "S",
+        "requested_qty": null,
+        "product_name": "Classic Bulldog Tee",
+        "inventory_record_found": true,
+        "available_qty": 0,
+        "shortfall_qty": null,
+        "can_fulfill_from_stock": null,
+        "location": "Aisle B"
+      }
+    },
+    {
+      "prompt": "what are the costs, retail price, and margins for CC-HOOD-NAVY size M",
+      "tool": "check_pricing_and_margin",
+      "arguments": {
+        "sku": "CC-HOOD-NAVY"
+      },
+      "output": {
+        "source_tables": [
+          "tickets",
+          "pricing"
+        ],
+        "ticket_id": null,
+        "matching_ticket_ids": [],
+        "ticket_status": null,
+        "sku": "CC-HOOD-NAVY",
+        "requested_qty": null,
+        "pricing_record_found": true,
+        "unit_cost": 22.0,
+        "list_price": 58.0,
+        "per_unit_gross_profit_at_list_price": 36.0,
+        "gross_margin_percent_at_list_price": 62.07,
+        "total_cost": null,
+        "total_at_list_price": null,
+        "gross_profit_at_list_price": null,
+        "proposed_price_analysis": null,
+        "price_options": null
+      }
+    },
+    {
+      "prompt": "when is my next rent payment due, and how much is it?",
+      "tool": "draft_payment_for_human_review",
+      "arguments": {
+        "payment_kind": "rent"
+      },
+      "output": {
+        "source_tables": [
+          "tickets",
+          "invoices",
+          "leases",
+          "cash_accounts",
+          "desk"
+        ],
+        "ticket_id": null,
+        "related_ticket_ids": [],
+        "ticket_status": null,
+        "selection_method": "earliest_lease_due",
+        "payment_kind": "rent",
+        "reference_id": 1,
+        "payee_reference": {
+          "landlord": "Elm City Properties",
+          "space_name": "Chapel Street shop"
+        },
+        "description": null,
+        "amount": 2400.0,
+        "due_date": "2026-09-02",
+        "date_today": "2026-08-31",
+        "days_until_due": 2,
+        "is_overdue": false,
+        "bill_status": null,
+        "account": "checking",
+        "current_balance": 160.0,
+        "projected_balance": -2240.0,
+        "cash_sufficient": false,
+        "ready_for_human_review": false,
+        "blocking_reason": "insufficient_cash",
+        "human_approval_required": true,
+        "approval_status": "pending_human_review",
+        "payment_executed": false,
+        "database_mutated": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Tiny Creatures by Clint Bellanger (clintbellanger.net), 2024.
+License: CC0 1.0 Universal. https://creativecommons.org/publicdomain/zero/1.0/
+Source: https://opengameart.org/content/tiny-creatures
+
+The five desk figures are tiles from that set, in Kenney's Tiny drawing style, used with Kenney's permission as stated by the artist. Credit is not required.
+
+  witch.png          tile 0066
+  zombie.png         tile 0001
+  vampire.png        tile 0003
+  frankenstein.png   tile 0069
+  ghost.png          tile 0005, the wraith
+
+Each file is a two-frame strip, 16 by 18 pixels per frame, with two pixels of clear space above the drawing. The second frame is the same drawing shifted up one pixel, so the bob stays inside the frame.

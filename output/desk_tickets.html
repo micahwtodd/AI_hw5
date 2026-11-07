@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Customs — Desk tickets</title>
+  <style>
+    :root {
+      --yale-blue: #00356b;
+      --yale-blue-dark: #002147;
+      --yale-intensity: #286dc0;
+      --ink: #111111;
+      --muted: #4d5966;
+      --line: #d5dde6;
+      --paper: #ffffff;
+      --wash: #f4f7fa;
+      --serif: "Yale", "YaleNew", "Source Serif 4", Georgia, "Palatino Linotype", serif;
+      --sans: Mallory, "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+
+    .site-header {
+      background: var(--yale-blue);
+      color: white;
+      border-bottom: 4px solid var(--yale-blue-dark);
+    }
+
+    .site-header-inner,
+    .site-main {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header-inner {
+      padding: 22px 0 20px;
+    }
+
+    .kicker {
+      margin: 0 0 6px;
+      color: #c9d7e8;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.1;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      color: #d7e2ee;
+      max-width: 42em;
+    }
+
+    .site-main {
+      padding: 28px 0 72px;
+    }
+
+    .board {
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid var(--line);
+      list-style: none;
+    }
+
+    .tabs button {
+      appearance: none;
+      margin: 0;
+      padding: 14px 18px;
+      border: 0;
+      border-right: 1px solid var(--line);
+      background: #eef3f8;
+      color: var(--yale-blue);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .tabs button[aria-selected="true"] {
+      background: var(--paper);
+      color: var(--yale-blue-dark);
+      box-shadow: inset 0 -3px 0 var(--yale-blue);
+      font-weight: 600;
+    }
+
+    .tabs button:focus-visible {
+      outline: 2px solid var(--yale-intensity);
+      outline-offset: -2px;
+    }
+
+    .panel {
+      padding: 28px 24px 32px;
+    }
+
+    .panel[hidden] { display: none; }
+
+    .ticket-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px 20px;
+      margin: 0 0 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ticket-meta dt {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ticket-meta dd {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--yale-blue);
+      font-size: 24px;
+    }
+
+    .section {
+      margin: 22px 0 0;
+      padding: 18px 18px 20px;
+      background: var(--wash);
+      border: 1px solid var(--line);
+    }
+
+    .section h3 {
+      margin: 0 0 10px;
+      color: var(--yale-blue);
+      font-size: 18px;
+    }
+
+    .placeholder {
+      min-height: 7em;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .later {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="kicker">Campus Customs · Multi-agent desk</p>
+      <h1>Desk tickets</h1>
+      <p class="sub">Expected notes, the actual agent run, the cash reconciliation, and the reflection for tickets 101, 102, and 103.</p>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="board">
+      <div class="tabs" role="tablist" aria-label="Desk tickets">
+        <button type="button" role="tab" id="tab-101" aria-controls="panel-101" aria-selected="true">Ticket 101</button>
+        <button type="button" role="tab" id="tab-102" aria-controls="panel-102" aria-selected="false">Ticket 102</button>
+        <button type="button" role="tab" id="tab-103" aria-controls="panel-103" aria-selected="false">Ticket 103</button>
+        <button type="button" role="tab" id="tab-cash" aria-controls="panel-cash" aria-selected="false">Cash</button>
+        <button type="button" role="tab" id="tab-reflection" aria-controls="panel-reflection" aria-selected="false">Reflection</button>
+      </div>
+
+      <section class="panel" role="tabpanel" id="panel-101" aria-labelledby="tab-101">
+        <h2>Ticket 101</h2>
+        <dl class="ticket-meta">
+          <div><dt>Type</dt><dd>customer_order</dd></div>
+          <div><dt>Requester</dt><dd>Tauhid Zaman</dd></div>
+          <div><dt>Subject</dt><dd>Bulldog tee</dd></div>
+          <div><dt>SKU / size</dt><dd>CC-TEE-WHITE / S</dd></div>
+        </dl>
+        <article class="section">
+          <h3>Expected</h3>
+          <p>This ticket requests a t-shirt that is unfortunately not in stock. First, I expect the Boss agent will use list_open_tickets to view the ticket queue then delegate the ticket to the Inventory agent because this is a clear stock request, and the Inventory agent will use check_inventory_status to determine the requested size is out of stock. The Inventory agent will need to restock. It will use list_invoices and check_vendor_status to ensure there are no payables due. Then it will call the Accounting agent to check the restock invoices and setup a payment for human approval using get_cash_status and draft_payment_for_human_review. The Inventory agent will simultaneously call the Customer Service Agent and tell them to draft a customer email noting the shirt they requested in on backorder, and will provide an estimated restock  date based on inventory lead times. Finally, the Customer Service Agent’s draft email and Accounting agent’s draft payment will go back to the Boss for review, and the Boss will check their work before sending for final human approval. The Facilities Agent should not be called at all for this ticket.</p>
+        </article>
+        <article class="section">
+          <h3>Actual</h3>
+          <p>The boss called inventory, then accounting, then customer service. Facilities was not called. Inventory used check_inventory_status and check_vendor_status: the size S Bulldog tee had 0 in stock, the shortfall was 1, and Bulldog Print Co had a 5-day lead with open invoice 501 for $840. No separate restock was drafted. Accounting used draft_payment_for_human_review and prepared that $840 invoice. Checking was $3,400, and the projected balance was $2,560. Customer service wrote an unsent note to Tauhid Zaman. A person approved the invoice. Checking became $2,560, size S stock stayed at 0, and the ticket was marked resolved.</p>
+        </article>
+      </section>
+
+      <section class="panel" role="tabpanel" id="panel-102" aria-labelledby="tab-102" hidden>
+        <h2>Ticket 102</h2>
+        <dl class="ticket-meta">
+          <div><dt>Type</dt><dd>rent_notice</dd></div>
+          <div><dt>Requester</dt><dd>Elm City Properties</dd></div>
+          <div><dt>Subject</dt><dd>Rent due</dd></div>
+          <div><dt>Lease</dt><dd>1 · Chapel Street shop</dd></div>
+        </dl>
+        <article class="section">
+          <h3>Expected</h3>
+          <p>this ticket says rent is due in two days. I expect the Boss Agent will use list_open_tickets to assign and delegate the ticket to the Facilities agent first because that's who manages the lease office space. THe Facilities agent will use get_lease_status to evaluate the lease due date. The Facilities agent will determine rent is due and ask the Accounting agent to draft a payment, using draft_payment_for_human_review for the lease shop. The Accounting agent will also use get_cash_status to evaluate the checking account value and ensure the shop has enough money for payment. Then, the Accounting agent will send their final summary back to the Boss for review before a human does a final review and approval. The Customer Service and Inventory agents should not be called.</p>
+        </article>
+        <article class="section">
+          <h3>Actual</h3>
+          <p>The boss called facilities, and facilities called accounting. Inventory and customer service were not called, and the boss did not call accounting a second time. Facilities used get_lease_status: lease 1 is the Chapel Street shop, Elm City Properties, $2,400 rent, due 2026-09-02, two days after the shop date and not overdue. Accounting used draft_payment_for_human_review and prepared the $2,400 rent. Checking was $2,560, and the projected balance was $160. The report included an unsent rent notice to Elm City Properties. A person approved the rent once. Checking became $160, and the ticket was marked resolved.</p>
+        </article>
+      </section>
+
+      <section class="panel" role="tabpanel" id="panel-103" aria-labelledby="tab-103" hidden>
+        <h2>Ticket 103</h2>
+        <dl class="ticket-meta">
+          <div><dt>Type</dt><dd>price_override</dd></div>
+          <div><dt>Requester</dt><dd>Yale AI Club</dd></div>
+          <div><dt>Subject</dt><dd>Bulk hoodie discount</dd></div>
+          <div><dt>SKU / size / qty</dt><dd>CC-HOOD-NAVY / M / 20</dd></div>
+        </dl>
+        <article class="section">
+          <h3>Expected</h3>
+          <p>this ticket shows a student request for a bulk discount on 20 hoodies, however there are only 8 in stock. I expect the Boss Agent will use list_open_tickets to assign this to the Inventory agent first, because that is who manages stock. the Invetory agent will use check_inventory_status to identify the shortfall, then call check_vendor_status to order more, and call the Accounting agent to draft the payment via draft_payment_for_human_review. The Accounting agent will also use get_cash_status to ensure there is enough money in the bank account for the restock order and report back to the Inventory agent. The Accounting agent will also use check_pricing_and_margin to assess profitability and a range of bulk discount options. Then, both the Inventory and Accounting Agents will communicate with the Customer Service agent who will draft an email to the customer noting the backorder timing restrictions and range of bulk discounts offered for the 20-hoodie order. Then, the Boss will review the Accounting payment and Customer Service email before sending for human approval. The Facilities agent should not be called for this ticket.</p>
+        </article>
+        <article class="section">
+          <h3>Actual</h3>
+          <p>The boss called inventory, then accounting, then customer service. Facilities was not called. Inventory used check_inventory_status and check_vendor_status: 8 size M hoodies were in stock against 20 requested, the shortfall was 12, and Bulldog Print Co had a 5-day lead and no open invoice. Accounting used check_pricing_and_margin once. It reported the stored unit cost of $22, the list price of $58, and a current margin of 62.07%. It did not draft a restock, and it said it still needed the inventory shortfall. The boss called accounting again. That second call was refused. Customer service wrote an unsent note about the shortfall of 12 and the 5-day lead, with no quote. The desk then added a restock of 12 times the stored $22 unit cost, $264, from the shop records, without another model call. A person declined that $264 restock. Checking stayed $160. The person entered an $8 discount per unit. The quote is $50 per unit, $1,000 for 20 hoodies, and the margin after the discount is $28.00 per unit (56.00%). That quote was added to the unsent email and recorded. Size M stock stayed 8, and the ticket was marked resolved.</p>
+        </article>
+      </section>
+
+      <section class="panel" role="tabpanel" id="panel-cash" aria-labelledby="tab-cash" hidden>
+        <h2>Cash</h2>
+        <p>Starting checking balance after reset: <strong>$3,400.00</strong> on shop date 2026-08-31.</p>
+        <p>Ticket 101 resolved by approving invoice 501, the Bulldog reprint, for <strong>$840.00</strong>. Checking went from $3,400.00 to <strong>$2,560.00</strong>. No restock was added.</p>
+        <p>Ticket 102 resolved by approving lease 1 rent, Chapel Street shop to Elm City Properties, for <strong>$2,400.00</strong>. Checking went from $2,560.00 to <strong>$160.00</strong>.</p>
+        <p>Ticket 103 resolved by declining the $264 restock, 12 short times the stored $22 unit cost, and recording an $8 discount per unit. The quote is $50 per unit and $1,000 for 20. Neither action moves cash. Checking stayed <strong>$160.00</strong>. Size M hoodie stock stayed 8.</p>
+        <p><strong>Reconciliation:</strong> $3,400.00 − $840.00 − $2,400.00 − $0.00 = $160.00. The working database <code>cash_accounts</code> checking balance is $160.00. The check matches.</p>
+      </section>
+
+      <section class="panel" role="tabpanel" id="panel-reflection" aria-labelledby="tab-reflection" hidden>
+        <h2>Reflection</h2>
+        <article class="section">
+          <h3>#1 / #2 Ticket performance evaluation and Actual / Expected analysis:</h3>
+          <p>Ticket 101: The agents performed moderately well because the handoffs largely worked as intended. As expected, the Boss agent called Inventory since the bulldog T is a clear stock request. Inventory correctly identified the CC-TEE-WHITE / S was out of stock using check_inventory_status and check_vendor_status, then the Boss called Accounting to use draft_payment_for_human_review to prepare the $840 outstanding invoice for human approval, a human (me!) approved it, and the checking balance correctly went from $3,400 to 2,560. Customer service drafted a backorder note to the customer Tauhid. The facilities agent was not called, as expected. Overall actual results were very consistent with expectations. A future improvement would be to follow up on the sale once backordered inventory arrives, assuming the buyer is still interested.</p>
+          <p>Ticket 102: The agents also performed very well, and the Facilities agent added some unexpected creative flair. Initially the agents’ actual behavior followed my expectations: the Boss agent called Facilities, who identified the upcoming due lease payment using get_lease_status, then called Accounting who drafted the $2,400 payment to Elm City Properties with draft_payment_for_human_review. The checking balance correctly fell from $2,560 to $160, which a human (me) approved. The Facilities agent drafted an email to the landlord saying the payment was on its way. I hadn’t fully intended this but liked the feature and kept it. As expected, the inventory and customer service agents were not called.</p>
+          <p>Ticket 103: This was the trickiest to engineer, and the agent performed weakly compared to the other two because it struggled to follow through with the quote given the potential for a negative checking account balance. The agents did ok but there is lots of room for improvement, I spent a lot of time troubleshooting this one got the code to compromise: it would refuse the order due to the negative checking account balance, but provide the quote to the customer anyway with a note about restock lag time. Initially, the Boss called Inventory to assess stock, then Accounting for margins. I made it so the human user could enter the exact bulk discount they wanted, floored at the total margin (won’t sell below cost). I expected to offer ranges but changed the code while troubleshooting issues. Facilities was not called, as expected. Cash remains at $160 because we never issued the order, and need to top off the checking account before ordering more for the quote.</p>
+        </article>
+        <article class="section">
+          <h3>#3 Agent consolidation opportunities:</h3>
+          <p>The Inventory management, Facilities, and Accounting agents feel like they could be consolidated into a single Operations agent that uses separate tools for each of these aspects. Most of the agent back-and-forth communications were among these three, and the Boss just acted as a delegator and facilitator, especially when coordinating with the Customer Service agent. Integrating these three agents into tools under one functional role would streamline the code and reduce model calls, since the information they need is more readily accessible via database pulls. For context, ticket 101 was three separate boss calls, ticket 102 was facilities calling accounting, and ticket 103 called accounting again but was refused.</p>
+        </article>
+        <article class="section">
+          <h3>#4 Three new problems Campus Customs might face that this agent team could solve with the tools I built:</h3>
+          <p>1) A second rent payment for the same lease. Ticket 102 already paid lease 1, $2,400, and checking is $160 after all three tickets were processed. The agents won't let a bank account balance go negative so the human will refuse it until the bank account is topped off.</p>
+          <p>2) The largest hoodie reorder that keeps checking accounts &gt;=0. After the three tickets, checking is $160 and the hoodie unit cost is $22.00. get_cash_status and check_pricing_and_margin can divide those: 7 units × $22 = $154, leaving $6. An eighth unit is $176, and $160 − $176 = −$16, so the payment will not be allowed.</p>
+          <p>3) Restock the sold-out tee now that invoice 501 is paid for ticket 101. The same inventory, vendor, and restock tools can price a new size S order subject to the bank account constraints.</p>
+        </article>
+        <article class="section">
+          <h3>#5) Three new problems Campus Customs might face that this agent team could NOT solve:</h3>
+          <p>1)	Revenue generation – right now we only track money going out of the checking account, and not money coming in. I’d create a Sales agent with tools that track revenues, money moving into the checking account, and business cash flow. The Sales agent would complement the Inventory and Accounting agents nicely, and could rely on them to coordinate prices and proactive restocking.</p>
+          <p>2)	Marketing / Advertising – If Campus Customs wants to expand their distribution, they’ll need a Marketing agent with tools that identify sales leads, track our most popular products, and internet scrapers that identify trends. The Marketing agent could also use tools that generate ads for social media, print, and local flyers.</p>
+          <p>3)	Warehouse Staffing / Fulfillment Manager – my agents don’t have any timekeeping or scheduling abilities, which Campus Customs needs to physically ship orders. I’d create an Operations agent that has tools to design work schedules for warehouse employees, manages employee callouts / sick time and leave, and coordinates order fulfillment behind the scenes. This would make the Campus Customs manual labor behind the scenes more efficient.</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const panels = new Map(
+      tabs.map((tab) => [tab.id, document.getElementById(tab.getAttribute("aria-controls"))])
+    );
+
+    function selectTab(selected) {
+      tabs.forEach((tab) => {
+        const active = tab === selected;
+        tab.setAttribute("aria-selected", String(active));
+        panels.get(tab.id).hidden = !active;
+      });
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => selectTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        const next = event.key === "ArrowRight"
+          ? tabs[(index + 1) % tabs.length]
+          : tabs[(index - 1 + tabs.length) % tabs.length];
+        next.focus();
+        selectTab(next);
+      });
+    });
+  </script>
+</body>
+</html>

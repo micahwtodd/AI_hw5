@@ -1,0 +1,86 @@
+{
+  "shop_date": "2026-08-31",
+  "starting_checking_balance": 3400.0,
+  "ending_checking_balance": 160.0,
+  "reconciliation": "3400.00 - 840.00 - 2400.00 - 0.00 = 160.00, matching cash_accounts",
+  "tickets": [
+    {
+      "id": 101,
+      "final_status": "resolved",
+      "outcome": "Size S Bulldog tee was out of stock. Invoice 501 for $840 was approved. Checking went from $3,400 to $2,560. No separate restock was added, and size S stock stayed 0.",
+      "agents": {
+        "boss": "Called inventory, then accounting, then customer service. Did not call facilities.",
+        "inventory": "Used check_inventory_status and check_vendor_status. Stock was 0, the shortfall was 1, and Bulldog Print Co had open invoice 501.",
+        "accounting": "Used draft_payment_for_human_review and prepared the $840 invoice. Checking was $3,400, with $2,560 projected.",
+        "facilities": "Not called.",
+        "customer_service": "Wrote an unsent note to Tauhid Zaman."
+      },
+      "human_approvals": [
+        {
+          "action": "approved",
+          "kind": "invoice",
+          "reference_id": 501,
+          "amount": 840.0,
+          "approved_by": "Micah",
+          "balance_after": 2560.0
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "final_status": "resolved",
+      "outcome": "Lease 1 rent of $2,400 was drafted even though it was due in two days and not overdue. Facilities asked accounting once. It was approved once. Checking went from $2,560 to $160.",
+      "agents": {
+        "boss": "Called facilities. Did not call inventory, accounting, or customer service.",
+        "inventory": "Not called.",
+        "accounting": "Used draft_payment_for_human_review for the $2,400 rent after facilities asked. Checking was $2,560, with $160 projected.",
+        "facilities": "Used get_lease_status and sent the rent draft to accounting.",
+        "customer_service": "Not called. The report included an unsent rent notice to Elm City Properties."
+      },
+      "human_approvals": [
+        {
+          "action": "approved",
+          "kind": "rent",
+          "reference_id": 1,
+          "amount": 2400.0,
+          "approved_by": "Micah",
+          "balance_after": 160.0
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "final_status": "resolved",
+      "outcome": "Eight of 20 size M hoodies were in stock. Accounting reported the stored $22 cost, $58 list price, and 62.07% margin, and did not draft a restock. The desk added the stored restock of 12 x $22 = $264. That restock was declined. An $8 discount was entered, producing a $50 quote and a $1,000 order. Checking stayed $160 and size M stock stayed 8.",
+      "agents": {
+        "boss": "Called inventory, accounting, and customer service. A second call to accounting was refused because accounting had already returned.",
+        "inventory": "Used check_inventory_status and check_vendor_status. The shortfall was 12. Bulldog Print Co had a 5-day lead and no open invoice.",
+        "accounting": "Used check_pricing_and_margin once. Reported the stored unit cost, list price, and current margin. Did not draft the restock.",
+        "facilities": "Not called.",
+        "customer_service": "Wrote an unsent note about the shortfall of 12 and the 5-day lead. The note did not include a quote. The desk added the $50 quote after the $8 discount was entered."
+      },
+      "human_approvals": [
+        {
+          "action": "declined",
+          "kind": "restock",
+          "quantity": 12,
+          "unit_cost": 22.0,
+          "amount": 264.0,
+          "cash_changed": false,
+          "approved_by": "Micah"
+        },
+        {
+          "action": "recorded",
+          "kind": "discount",
+          "discount_per_unit": 8.0,
+          "quote_per_unit": 50.0,
+          "order_total": 1000.0,
+          "margin_after_discount_per_unit": 28.0,
+          "margin_after_discount_percent": 56.0,
+          "cash_changed": false,
+          "approved_by": "Micah"
+        }
+      ]
+    }
+  ]
+}
